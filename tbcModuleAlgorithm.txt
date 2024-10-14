@@ -1,0 +1,34 @@
+Marianne Adams
+10/18/2024
+CS120
+
+The goal of this program is to develop a module for turn based combat. This program will contain an object called Character as well as a fight function. The fight function will pit two characters against each other. 
+
+Create a new object called Character. 
+	Define new function called _init_(self):
+		self._name gets user input ("What would you like your character 		to be named?")
+		self._maxDamage gets random integer from 50-1500
+		self._hitChance gets random integer from 0-100
+		self._hitPoints gets random integer
+		self._armor gets random integer greater than or equal to 0		
+	Property: characterName ask for user input. (although strongly advise 	they name a character "Dan the Magical Cheese Wizard"--jkjk I'm bored and 	trying to make this fun for my brain)
+
+	Property: hitPoints (integer - no max or min). Will determine how much 	damage the character can sustain. Is possible to be negative or 0. 
+	
+	Property: hitChance (integer, 0-100) The likelihood a hit will be 	successful
+	
+	Property: maxDamage(positive integer)The largest amount of damage a 	single 	hit will sustain. (Possibly use random.randint to garner a random 	integer--ideally, I would want to specify that the minimum damage is 50)
+	
+	Property: armor (positive integer) The number of hits absorbed by the 	character's armor
+
+	Def printStats():
+		Takes character1, character2
+		Prints Character name, hitPoints, hitChance, maxDamage, and armor
+
+Define function fightOpponent():
+	Takes character1, character2
+	Parses out character1 maxDamage as well as character2 maxDamage
+	Orchestrates series of turns and runs until one character is defeated (ie 	maxDamage is at 0)
+	keepGoing gets True (sentry for while loop)
+	While keepGoing loop:
+		
