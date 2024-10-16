@@ -6,29 +6,31 @@ The goal of this program is to develop a module for turn based combat. This prog
 
 Create a new object called Character. 
 	Define new function called _init_(self):
-		self._name gets user input ("What would you like your character 		to be named?")
-		self._maxDamage gets random integer from 50-1500
+		self._name gets user input ("What would you like your character to be named?")
+		self._maxDamage gets a positive integer. maxDamage is largest amount of damage single hit would sustain
 		self._hitChance gets random integer from 0-100
 		self._hitPoints gets random integer
 		self._armor gets random integer greater than or equal to 0		
-	Property: characterName ask for user input. (although strongly advise 	they name a character "Dan the Magical Cheese Wizard"--jkjk I'm bored and 	trying to make this fun for my brain)
+	Property: characterName. Takes input of the character name. 
 
 	Property: hitPoints (integer - no max or min). Will determine how much 	damage the character can sustain. Is possible to be negative or 0. 
 	
-	Property: hitChance (integer, 0-100) The likelihood a hit will be 	successful
+	Property: hitChance (integer, 0-100) The likelihood a hit will be successful
 	
-	Property: maxDamage(positive integer)The largest amount of damage a 	single 	hit will sustain. (Possibly use random.randint to garner a random 	integer--ideally, I would want to specify that the minimum damage is 50)
+	Property: maxDamage(positive integer)The largest amount of damage a single hit will sustain. 
 	
-	Property: armor (positive integer) The number of hits absorbed by the 	character's armor
+	Property: armor (positive integer) The number of hits absorbed by the character's armor
 
 	Def printStats():
-		Takes character1, character2
+		No parameters
 		Prints Character name, hitPoints, hitChance, maxDamage, and armor
+		Returns characterStats
 
 Define function fightOpponent():
-	Takes character1, character2
+	Takes character1, character1States character2
 	Parses out character1 maxDamage as well as character2 maxDamage
-	Orchestrates series of turns and runs until one character is defeated (ie 	maxDamage is at 0)
+	Subtracts armor from maxDamage. Disallows negative hitPoints
+	Orchestrates series of turns and runs until one character is defeated (ie maxDamage is at 0)
 	keepGoing gets True (sentry for while loop)
 	While keepGoing loop:
-		
+		while hitPoints
