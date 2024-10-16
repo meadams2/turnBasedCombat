@@ -14,12 +14,28 @@ Create a new object called Character.
 	Property: characterName. Takes input of the character name. 
 
 	Property: hitPoints (integer - no max or min). Will determine how much 	damage the character can sustain. Is possible to be negative or 0. 
-	
+		Check if value type is an integer. 
+		Else, print that hitPoints must be a number and self._hitPoints gets 10. 
 	Property: hitChance (integer, 0-100) The likelihood a hit will be successful
+		Check if value type is an integer.
+			If the value is greater than or equal to 0, then self._hitChance gets value
+			Elif value greater than 100, print that hitChance must be less than or equal to 100 then self._hitChance gets 100. 
+			Else, print that hitChance must be positive and self._hitChance gets 1
+			
+		If not, print that the hitChance must be a number and self._hitChance gets 1
+			
 	
 	Property: maxDamage(positive integer)The largest amount of damage a single hit will sustain. 
-	
+		Check if value type is an integer. 
+			if value is greater than or equal to 0, then self._maxDamage gets value
+			Else, print that maxDamage must be positive and self._maxDamage gets 1.
+		Else, print that maxDamage must be a number and self._maxDamage gets 1. 
+
 	Property: armor (positive integer) The number of hits absorbed by the character's armor
+		Check if value type is an integer. 
+			If value is greater than or equal to 0, then self._armor gets value.
+			Else, print that armor must be positive and self._armor gets 0. 
+		Else, print that armor must be a number and self._armor gets 0.
 
 	Def printStats():
 		No parameters
