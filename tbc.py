@@ -6,21 +6,12 @@ import random
 def __main__():
     hero = Character("Hero", 10, 50, 5, 2)
     villain = Character("Villain", 10, 10, 5, 0)
-#     hero = Character()
-#     hero.name = "Hero"
-#     hero.hitPoints = 10
-#     hero.hitChance = 50
-#     hero.maxDamage = 5
-#     hero.armor = 2
-#     hero = (hero.name, hero.hitPoints, hero.hitChance, hero.maxDamage, hero.armor)
     Character.printStats(hero)
     Character.printStats(villain)
-    Character.hit(hero)
-    Character.hit(villain)
-    fight(hero, villain)
+#     fight(hero, villain)
     
 class Character(object):
-    def __init__(self, name = "Dan the Magical Cheese Wizard", hitPoints = 10, hitChance = 50, maxDamage = 5, armor = 0):
+    def __init__(self, name, hitPoints, hitChance, maxDamage, armor):
         super().__init__()
         self.__name = name
         self.__maxDamage = maxDamage
@@ -78,10 +69,10 @@ class Character(object):
                     print("Hit Chance must be less than 100.")
                     self.__hitChance = 100
             else:
-                print("Hit Chance must be positive. Hit Chance is now 1")
+                print("Hit Chance must be positive.")
                 self.__hitChance = 1
         else:
-            print("Hit Chance must be a number. Hit Chance is now 1")
+            print("Hit Chance must be a number.")
             self.hitChance = 1
             
     @property
@@ -106,30 +97,10 @@ HP: {self.__hitPoints}
 Hit Chance: {self.__hitChance}
 Max Damage: {self.__maxDamage}
 Armor: {self.__armor}""")
-          
-    def hit(self):
-        hitPerc = random.randrange(1, 100)
-        if hitPerc <= self.__hitChance:
-            hitDamage = random.randrange(1, self.__maxDamage)
-            print(f"{self.__name} hits for {hitDamage} damage")
-        else:
-            hitDamage = 0
-            print(f"{self.__name} misses. No damage.")
 
-    
 def fight(character1, character2):
-    character1.hitDamage = Character.hit(character1)
-    character2.hitDamage = Character.hit(character2)
-    keepGoing = True
-    while keepGoing:
-        if newHitPoints <= 0:
-            print(f"""{newHitPoints}
-                  {character1} dies.""")
-            keepGoing = False
-        else:
-            Character.hit(self)
-            print(f"{newHitPoints}")
     
+            
 __main__()
     
             
