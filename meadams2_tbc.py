@@ -5,20 +5,16 @@ Defines Character class and fight function"""
 import random
 
 def main():
-    hero = Character("Hero", 10, 50, 5, 2)
     villain = Character("Villain", 10, 10, 5, 0)
-#     hero = Character()
-#     hero.name = "Hero"
-#     hero.hitPoints = 10
-#     hero.hitChance = 50
-#     hero.maxDamage = 5
-#     hero.armor = 2
-#     hero = (hero.name, hero.hitPoints, hero.hitChance, hero.maxDamage, hero.armor)
+    hero = Character()
+    hero.name = "Hero"
+    hero.hitPoints = 10
+    hero.hitChance = 50
+    hero.maxDamage = 5
+    hero.armor = 2
     hero.printStats()
     villain.printStats()
-    #villain.hit(hero)
-    #hero.hit(villain)
-#     fight(hero, villain)
+    fight(hero, villain)
     
 class Character(object):
     def __init__(self, name = "Dan the Magical Cheese Wizard", hitPoints = 10, hitChance = 50, maxDamage = 5, armor = 0):
@@ -28,6 +24,7 @@ class Character(object):
         self.hitChance = hitChance
         self.hitPoints = hitPoints
         self.armor = armor
+        
     def testInt(self, value, min = 0, max = 100, default = 0):
         """ takes in value 
         checks to see if it is an int between
@@ -61,15 +58,7 @@ class Character(object):
     
     @maxDamage.setter
     def maxDamage(self, value):
-        if value == int:
-            if value >= 0:
-                self.__maxDamage = value
-            else:
-                print ("Maximum Damage must be positive.")
-                self.__maxDamage = 1
-        else:
-            print("Maximum damage must be a number.")
-            self.__maxDamage = 1
+        self.__maxDamage = self.testInt(value, 0, 10000, 1)
         return self.__maxDamage
     
     @property
@@ -88,7 +77,7 @@ class Character(object):
     
     @hitChance.setter
     def hitChance(self, value):
-        self.__hitChance = testInt(self, value, 0, 100, 0)
+        self.__hitChance = self.testInt(value, 0, 100, 0)
         return self.__hitChance
             
     @property
@@ -97,7 +86,7 @@ class Character(object):
     
     @armor.setter
     def armor(self, value):
-        self.__armor = testInt(self, value, 0, 1000, 0)
+        self.__armor = self.testInt(value, 0, 1000, 0)
         return self.__armor
         
     def printStats(self):
@@ -124,18 +113,22 @@ Armor: {self.armor}""")
         return enemy.hitPoints
 
     
-# def fight(character1, character2):
-#     
-#     
-#     keepGoing = True
-#     while keepGoing:
-#         if character1.hitPoints <= 0:
-#             print(f"""{newHitPoints}
-#                   {character1} dies.""")
-#             keepGoing = False
-#         else:
-#             Character.hit(self)
-#             print(f"{newHitPoints}")
+def fight(character1, character2):
+    character1.hit(character2)
+    character2.hit(character1)
+    keepGoing = True
+    while keepGoing:
+        if character2.hitPoints <= 0:
+            print(f"""{character2.name}:{character2.hitPoints} HP
+{character2.name} dies""")
+            keepGoing = False
+        elif character1.hitPoints <=0:
+            print(f"""{character1.name}:{character1.hitPoints} HP
+{character1.name} dies.""")
+            keepGoing = False
+        else:
+            character2.hit(character1)
+            character1.hit(character2)
     
 main()
     
