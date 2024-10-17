@@ -28,7 +28,24 @@ class Character(object):
         self.hitChance = hitChance
         self.hitPoints = hitPoints
         self.armor = armor
-        
+    def testInt(self, value, min = 0, max = 100, default = 0):
+        """ takes in value 
+        checks to see if it is an int between
+        min and max.  If it is not a legal value
+        set it to default """
+        out = default
+        if type(value) == int:
+            if value >= min:
+                if value <= max:
+                    out = value 
+                else:
+                    print("Too large")
+            else:
+                print("Too small")
+        else:
+            print("Must be an int")
+        return out
+    
     @property
     def name(self):
         return self.__name
@@ -82,24 +99,6 @@ class Character(object):
     def armor(self, value):
         self.__armor = testInt(self, value, 0, 1000, 0)
         return self.__armor
-    
-    def testInt(self, value, min = 0, max = 100, default = 0):
-        """ takes in value 
-        checks to see if it is an int between
-        min and max.  If it is not a legal value
-        set it to default """
-        out = default
-        if type(value) == int:
-            if value >= min:
-                if value <= max:
-                    out = value 
-                else:
-                    print("Too large")
-            else:
-                print("Too small")
-        else:
-            print("Must be an int")
-        return out
         
     def printStats(self):
         print(f"""{self.name}
