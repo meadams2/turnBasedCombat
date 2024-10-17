@@ -3,7 +3,8 @@
 CS120 Turn Based Combat Module
 Defines Character class and fight function"""
 import random
-def __main__():
+
+def main():
     hero = Character("Hero", 10, 50, 5, 2)
     villain = Character("Villain", 10, 10, 5, 0)
 #     hero = Character()
@@ -13,29 +14,30 @@ def __main__():
 #     hero.maxDamage = 5
 #     hero.armor = 2
 #     hero = (hero.name, hero.hitPoints, hero.hitChance, hero.maxDamage, hero.armor)
-    Character.printStats(hero)
-    Character.printStats(villain)
-    Character.hit(hero)
-    Character.hit(villain)
-    fight(hero, villain)
+    hero.printStats()
+    villain.printStats()
+    #villain.hit(hero)
+    #hero.hit(villain)
+#     fight(hero, villain)
     
 class Character(object):
     def __init__(self, name = "Dan the Magical Cheese Wizard", hitPoints = 10, hitChance = 50, maxDamage = 5, armor = 0):
         super().__init__()
-        self.__name = name
-        self.__maxDamage = maxDamage
-        self.__hitChance = hitChance
-        self.__hitPoints = hitPoints
-        self.__armor = armor
+        self.name = name
+        self.maxDamage = maxDamage
+        self.hitChance = hitChance
+        self.hitPoints = hitPoints
+        self.armor = armor
         
     @property
-    def characterName(self):
+    def name(self):
         return self.__name
     
- 
+    @name.setter
     def name(self, value):
         self.__name = value
-        
+        return self.__name
+    
     @property
     def maxDamage(self):
         return self.__maxDamage
@@ -51,6 +53,7 @@ class Character(object):
         else:
             print("Maximum damage must be a number.")
             self.__maxDamage = 1
+        return self.__maxDamage
     
     @property
     def hitPoints(self):
@@ -58,11 +61,9 @@ class Character(object):
     
     @hitPoints.setter
     def hitPoints(self, value):
-        if value == int:
+        if type(value)==int:
             self.__hitPoints = value
-        else:
-            print("Hit Points must be a number.")
-            self.__hitPoints = 10
+        return self.__hitPoints
             
     @property
     def hitChance(self):
@@ -70,19 +71,8 @@ class Character(object):
     
     @hitChance.setter
     def hitChance(self, value):
-        if value == int:
-            if value >= 0:
-                if value <= 100:
-                    self.__hitChance = value
-                else:
-                    print("Hit Chance must be less than 100.")
-                    self.__hitChance = 100
-            else:
-                print("Hit Chance must be positive. Hit Chance is now 1")
-                self.__hitChance = 1
-        else:
-            print("Hit Chance must be a number. Hit Chance is now 1")
-            self.hitChance = 1
+        self.__hitChance = testInt(self, value, 0, 100, 0)
+        return self.__hitChance
             
     @property
     def armor(self):
@@ -90,47 +80,65 @@ class Character(object):
     
     @armor.setter
     def armor(self, value):
-        if value == int:
-            if value >= 0:
-                self.__armor = value
+        self.__armor = testInt(self, value, 0, 1000, 0)
+        return self.__armor
+    
+    def testInt(self, value, min = 0, max = 100, default = 0):
+        """ takes in value 
+        checks to see if it is an int between
+        min and max.  If it is not a legal value
+        set it to default """
+        out = default
+        if type(value) == int:
+            if value >= min:
+                if value <= max:
+                    out = value 
+                else:
+                    print("Too large")
             else:
-                print("Armor must be positive.")
-                self.__armor = 0
+                print("Too small")
         else:
-            print("Armor must be a number.")
-            self.__armor = 0
+            print("Must be an int")
+        return out
         
     def printStats(self):
-        print(f"""{self.__name}
-HP: {self.__hitPoints}
-Hit Chance: {self.__hitChance}
-Max Damage: {self.__maxDamage}
-Armor: {self.__armor}""")
+        print(f"""{self.name}
+HP: {self.hitPoints}
+Hit Chance: {self.hitChance}
+Max Damage: {self.maxDamage}
+Armor: {self.armor}""")
           
-    def hit(self):
-        hitPerc = random.randrange(1, 100)
-        if hitPerc <= self.__hitChance:
-            hitDamage = random.randrange(1, self.__maxDamage)
-            print(f"{self.__name} hits for {hitDamage} damage")
+    def hit(self, enemy):
+        if random.randrange(1,100) <= self.hitChance:
+            hitDamage = random.randrange(1, self.maxDamage)
+            print(f"{self.name} hits {enemy.name} for {hitDamage} damage")
+            print(f"{enemy.name}'s armor absorbs {enemy.armor} points")
+            hitDamage -= enemy.armor
+            if hitDamage < 0:
+                hitDamage = 0
+            enemy.hitPoints -= hitDamage
+            print(f"{enemy.name}: {enemy.hitPoints}")
         else:
             hitDamage = 0
-            print(f"{self.__name} misses. No damage.")
+            print(f"{self.name} misses. No damage.")
+        
+        return enemy.hitPoints
 
     
-def fight(character1, character2):
-    character1.hitDamage = Character.hit(character1)
-    character2.hitDamage = Character.hit(character2)
-    keepGoing = True
-    while keepGoing:
-        if newHitPoints <= 0:
-            print(f"""{newHitPoints}
-                  {character1} dies.""")
-            keepGoing = False
-        else:
-            Character.hit(self)
-            print(f"{newHitPoints}")
+# def fight(character1, character2):
+#     
+#     
+#     keepGoing = True
+#     while keepGoing:
+#         if character1.hitPoints <= 0:
+#             print(f"""{newHitPoints}
+#                   {character1} dies.""")
+#             keepGoing = False
+#         else:
+#             Character.hit(self)
+#             print(f"{newHitPoints}")
     
-__main__()
+main()
     
             
         
