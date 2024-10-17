@@ -10,8 +10,8 @@ def __main__():
 #     hero.hitChance = 50
 #     hero.maxDamage = 5
 #     hero.armor = 2
-    print(Character.printStats(hero))
-    fight(hero, villain)
+    Character.printStats(hero)
+#     fight(hero, villain)
     
 class Character(object):
     def __init__(self, name, hitPoints, hitChance, maxDamage, armor):
@@ -102,7 +102,7 @@ Max Damage: {self.__maxDamage}
 Armor: {self.__armor}""")
 #Why does it keep printing none???
 
-def fight(character1, character2):
+# def fight(character1, character2):
     
     
 __main__()
