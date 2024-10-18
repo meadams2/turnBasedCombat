@@ -6,7 +6,7 @@ The goal of this program is to develop a module for turn based combat. This prog
 
 Create a new object called Character. 
 	Define new function called _init_(self):
-		self._name gets user input ("What would you like your character to be named?")
+		self._name gets name
 		self._maxDamage gets a positive integer. maxDamage is largest amount of damage single hit would sustain
 		self._hitChance gets random integer from 0-100
 		self._hitPoints gets random integer
@@ -41,12 +41,19 @@ Create a new object called Character.
 		No parameters
 		Prints Character name, hitPoints, hitChance, maxDamage, and armor
 		Returns characterStats
+	Define hit():
+		Takes self and enemy
+		Uses hitChance to determine if hit lands. Hit lands when random integer (1-100) is less than or equal to hitChance.
+		If hit lands, determine the hitDamage using random integer (0-maxDamage)
+		Else, hitDamage gets 0.
+		Subtract armor from hitDamage.
+		Subtract hitDamage from hitPoints
+		Return enemy.hitPoints
+
 
 Define function fightOpponent():
-	Takes character1, character1States character2
-	Parses out character1 maxDamage as well as character2 maxDamage
-	Subtracts armor from maxDamage. Disallows negative hitPoints
-	Orchestrates series of turns and runs until one character is defeated (ie maxDamage is at 0)
+	Takes character1, character2
+	Orchestrates series of turns and runs until one character is defeated (ie hitPoints is at 0)
 	keepGoing gets True (sentry for while loop)
 	While keepGoing loop:
 		while hitPoints
