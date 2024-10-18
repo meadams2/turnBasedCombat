@@ -69,6 +69,9 @@ class Character(object):
     def hitPoints(self, value):
         if type(value)==int:
             self.__hitPoints = value
+        else:
+            print("HP must be an integer.")
+            self.__hitPoints = 10
         return self.__hitPoints
             
     @property
