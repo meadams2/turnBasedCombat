@@ -91,6 +91,7 @@ class Character(object):
         
     def printStats(self):
         print(f"""{self.name}
+
 HP: {self.hitPoints}
 Hit Chance: {self.hitChance}
 Max Damage: {self.maxDamage}
